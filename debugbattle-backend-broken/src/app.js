@@ -57,7 +57,11 @@ app.use(compression());
 // ─── Routes ─────────────────────────────────────────────────────────────────
 app.use('/api', routes);
 
-// ─── Health check ────────────────────────────────────────────────────────────
+// ─── Root and health check ───────────────────────────────────────────────────
+app.get('/', (_req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Battle-6 backend is running' });
+});
+
 app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
